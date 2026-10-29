@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OBJECT ARCHIVE — 04</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><span class="led"></span> OBJECT ARCHIVE</div>
+  <div>INTERNAL NETWORK <span id="clock">00:00:00</span></div>
+</header>
+
+<main>
+  <!-- ЭКРАН ВХОДА -->
+  <section id="login" class="login">
+    <div class="login-window">
+      <div class="window-title">
+        OBJECT_DATABASE.exe
+        <span>_ □ ×</span>
+      </div>
+
+      <div class="login-content">
+        <p class="eyebrow">PRIVATE SYSTEM // VERSION 4.1</p>
+        <h1>THE LOST<br><span>ARCHIVE</span></h1>
+
+        <p>Внутренняя база данных объекта.</p>
+        <p>Некоторые документы повреждены.</p>
+
+        <form id="login-form">
+          <label for="login-code">КОД ДОСТУПА</label>
+          <div class="input-row">
+            <input id="login-code" placeholder="Введите код" autocomplete="off" required>
+            <button type="submit">ВОЙТИ</button>
+          </div>
+          <p id="login-error" class="error"></p>
+        </form>
+
+        <div class="login-footer">
+          <span>EST. 2003</span>
+          <span>USER: UNKNOWN</span>
+        </div>
+      </div>
+    </div>
+    <p class="login-note">PLEASE DO NOT CLOSE THIS WINDOW</p>
+  </section>
+
+  <!-- ОСНОВНОЙ АРХИВ -->
+  <section id="site" hidden>
+
+    <div class="status-bar">
+      <span><i class="green-dot"></i> SYSTEM ONLINE</span>
+      <span>ACCESS: LIMITED</span>
+      <span class="red-text">CASE №004 / OPEN</span>
+    </div>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">INTERNAL DATABASE / 2003—2025</p>
+        <h1>OBJECT <span>04</span></h1>
+        <p>Архив наблюдения. Последняя запись о пропавшем сотруднике не совпадает с официальным отчётом.</p>
+      </div>
+      <div class="stamp">TOP<br>SECRET</div>
+    </section>
+
+    <nav class="menu">
+      <button class="nav active" data-page="home">Главная</button>
+      <button class="nav" data-page="basement">Камеры подвала</button>
+      <button class="nav" data-page="tower">Камеры вышки</button>
+      <button class="nav" data-page="restore">Восстановление</button>
+      <button class="nav" data-page="wiki">Wiki / поиск</button>
+      <button class="nav" data-page="terminal">Терминал</button>
+    </nav>
+
+    <!-- ГЛАВНАЯ -->
+    <section class="page" id="page-home">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / OVERVIEW</p>
+          <h2>Главная</h2>
+        </div>
+        <span class="red-text">● ДЕЛО НЕ ЗАКРЫТО</span>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <p class="eyebrow">PERSONNEL ALERT</p>
+          <h3>Пропал сотрудник</h3>
+          <p>Сотрудник №004 не вернул пропуск. Последняя запись связана с вышкой и сектором B.</p>
+          <button class="text-button" data-open="camera">Открыть фотографию →</button>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">CAMERA STATUS</p>
+          <h3>T-04 / NO SIGNAL</h3>
+          <p>Последняя передача сигнала — 03:17.</p>
+          <button class="text-button" data-open="tower">Проверить камеры →</button>
+        </article>
+
+        <article class="card">
+          <p class="eyebrow">DAMAGED DATA</p>
+          <h3>INCIDENT_04.DAT</h3>
+          <p>Одна запись ожидает восстановления.</p>
+          <button class="text-button" data-open="restore">Восстановить файл →</button>
+        </article>
+      </div>
+
+      <div class="message">
+        <b>СИСТЕМНОЕ СООБЩЕНИЕ</b>
+        <p id="home-message">Ожидание действий пользователя...</p>
+      </div>
+    </section>
+
+    <!-- КАМЕРЫ ПОДВАЛА -->
+    <section class="page" id="page-basement" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / SURVEILLANCE</p>
+          <h2>Камеры подвала</h2>
+        </div>
+      </div>
+      <p>Архивные видеозаписи подземного уровня.</p>
+      <div class="camera-grid" id="basement-cameras"></div>
+    </section>
+
+    <!-- КАМЕРЫ ВЫШКИ -->
+    <section class="page" id="page-tower" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / TOWER SURVEILLANCE</p>
+          <h2>Камеры вышки</h2>
+        </div>
+      </div>
+      <p>Последний доступный журнал наблюдения.</p>
+      <div class="camera-grid" id="tower-cameras"></div>
+    </section>
+
+    <!-- ВОССТАНОВЛЕНИЕ -->
+    <section class="page" id="page-restore" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">04 / FILE RECOVERY</p>
+          <h2>Восстановление архива</h2>
+        </div>
+      </div>
+
+      <div class="recovery-box">
+        <div class="file-row">
+          <span>INCIDENT_04.DAT</span>
+          <span id="file-percent">23% — DAMAGED</span>
+        </div>
+
+        <div class="progress">
+          <span id="progress-fill"></span>
+        </div>
+
+        <pre id="file-text">HEADER ERROR
+DATA FRAGMENTS MISSING
+RECOVERY KEY REQUIRED</pre>
+
+        <form id="restore-form">
+          <label for="restore-code">Ключ восстановления</label>
+          <div class="input-row">
+            <input id="restore-code" placeholder="Введите ключ" required>
+            <button type="submit">ВОССТАНОВИТЬ</button>
+          </div>
+          <p id="restore-error" class="error"></p>
+        </form>
+
+        <div id="restore-result" class="message" hidden>
+          <p>Восстановление завершено.</p>
+          <p>Обнаружен дополнительный файл.</p>
+          <p>Доступ к файлу запрещён.</p>
+          <button id="play-recording" class="text-button" type="button">
+            ▶ ПРОСЛУШАТЬ ЗАПИСЬ
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIKI -->
+    <section class="page" id="page-wiki" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">05 / KNOWLEDGE BASE</p>
+          <h2>Wiki объекта</h2>
+        </div>
+      </div>
+
+      <div class="wiki-layout">
+        <aside class="wiki-sidebar">
+          <label for="wiki-input">Поиск по архиву</label>
+          <div class="input-row">
+            <input id="wiki-input" placeholder="Например: вышка">
+            <button id="wiki-search" type="button">НАЙТИ</button>
+          </div>
+
+          <p class="hint">Попробуй: сотрудник, вышка, сектор B, пропуск.</p>
+
+          <div class="history-title">
+            ИСТОРИЯ ПОИСКА
+            <button id="clear-history" class="small-button" type="button">ОЧИСТИТЬ</button>
+          </div>
+          <div id="wiki-history"></div>
+          <div id="wiki-results"></div>
+        </aside>
+
+        <article id="wiki-article" class="wiki-article">
+          <p class="eyebrow">DATABASE ARTICLE</p>
+          <h3>База данных объекта</h3>
+          <p>Введи запрос, чтобы найти сведения о сотрудниках, камерах и документах.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ТЕРМИНАЛ -->
+    <section class="page" id="page-terminal" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">06 / SYSTEM CONSOLE</p>
+          <h2>Терминал</h2>
+        </div>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-title">OBJECT-OS // CONSOLE</div>
+        <div id="terminal-output">
+          <p>SECURITY TERMINAL V4.1</p>
+          <p>Напиши <b>help</b>, чтобы увидеть команды.</p>
+        </div>
+        <form id="terminal-form">
+          <span>user@object:~$</span>
+          <input id="terminal-input" autocomplete="off" spellcheck="false">
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <span>OBJECT ARCHIVE © 2003–2025</span>
+      <span>UNAUTHORIZED ACCESS IS LOGGED</span>
+    </footer>
+  </section>
+</main>
+
+<!-- ПАНЕЛЬ КНОПОК -->
+<aside class="media-player">
+  <button id="music-button" class="device-button cassette-button" type="button"
+          aria-label="Включить музыку" aria-pressed="false">
+    <span class="cassette">
+      <span class="cassette-label">SIDE A</span>
+      <span class="cassette-holes">● ━ ●</span>
+      <span class="device-led"></span>
+    </span>
+    <span class="device-caption">TAPE</span>
+  </button>
+
+  <button id="camera-button" class="device-button" type="button">
+    <span class="device-icon photo-icon">▣</span>
+    <span class="device-caption">CAMERA</span>
+  </button>
+
+  <button id="settings-button" class="device-button" type="button">
+    <span class="device-icon">⚙</span>
+    <span class="device-caption">SETUP</span>
+  </button>
+
+  <button id="files-button" class="device-button" type="button">
+    <span class="device-icon disk-icon">▤</span>
+    <span class="device-caption">FILES</span>
+  </button>
+
+  <button id="incident-button" class="device-button" type="button">
+    <span class="device-icon alert-icon">!</span>
+    <span class="device-caption">LOG</span>
+  </button>
+
+  <div class="media-label">
+    <b>OBJECT MEDIA DECK</b>
+    <span id="music-status">Нажми на кассету</span>
+  </div>
+
+  <audio id="background-music" src="background.mp3" loop preload="auto"></audio>
+  <audio id="system-recording" src="-.mp3" preload="auto"></audio>
+</aside>
+
+<!-- ОКНО ФОТО И НАСТРОЕК -->
+<section id="device-modal" class="modal" hidden role="dialog" aria-modal="true">
+  <div class="modal-window">
+    <div class="modal-title">
+      <span id="modal-heading">OBJECT SYSTEM</span>
+      <button id="modal-close" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div id="modal-content" class="modal-content"></div>
+  </div>
+</section>
+
+</body>
+</html>

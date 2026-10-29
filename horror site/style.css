@@ -1,0 +1,974 @@
+:root {
+  --bg: #17191a;
+  --panel: #282b2c;
+  --panel-light: #35393a;
+  --text: #e3e3dc;
+  --muted: #a4aaa5;
+  --green: #8cb99a;
+  --red: #c62836;
+  --red-light: #ff4656;
+  --border: #535b57;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at top, #303635 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font: 14px/1.6 "Tahoma", "Verdana", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--red-light);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--red);
+  color: white;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 5%;
+  background: #101212;
+  border-bottom: 1px solid #515b55;
+  color: #bec9c0;
+  font: 10px "Courier New", monospace;
+  letter-spacing: 1px;
+}
+
+.brand {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#clock {
+  margin-left: 14px;
+  color: var(--green);
+}
+
+.led,
+.green-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: var(--red-light);
+  box-shadow: 0 0 8px var(--red-light);
+}
+
+.green-dot {
+  background: #7ab98a;
+  box-shadow: 0 0 7px #7ab98a;
+}
+
+main {
+  width: min(1100px, 92%);
+  margin: auto;
+}
+
+/* ВХОД */
+
+.login {
+  min-height: calc(100vh - 55px);
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: 40px 0 70px;
+}
+
+.login-window {
+  width: min(500px, 100%);
+  background: #d4d2c9;
+  color: #272c29;
+  border: 2px solid #eef0e7;
+  box-shadow:
+    0 0 0 4px #3a403d,
+    10px 12px 0 #080909;
+}
+
+.window-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 11px;
+  color: white;
+  background: linear-gradient(90deg, #164f43, #357b65);
+  font: bold 11px Tahoma, sans-serif;
+}
+
+.login-content {
+  padding: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 9px;
+  color: #87b99a;
+  font: bold 10px "Courier New", monospace;
+  letter-spacing: 1.3px;
+}
+
+.login .eyebrow {
+  color: #426f5b;
+}
+
+.login h1,
+.hero h1 {
+  margin: 15px 0;
+  font: bold 45px/.98 "Courier New", monospace;
+  letter-spacing: -2px;
+}
+
+.login h1 span,
+.hero h1 span {
+  color: var(--red);
+}
+
+.login-content > p:not(.eyebrow) {
+  margin: 5px 0;
+  color: #454b46;
+  font-size: 13px;
+}
+
+label {
+  display: block;
+  margin: 18px 0 7px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.input-row {
+  display: flex;
+  gap: 7px;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px;
+  color: #202522;
+  background: #eeeee7;
+  border: 1px solid #7e8981;
+  border-radius: 0;
+}
+
+.input-row button,
+button[type="submit"] {
+  padding: 9px 13px;
+  color: white;
+  background: #28674f;
+  border: 1px solid #194b39;
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.input-row button:hover,
+button[type="submit"]:hover {
+  background: #378765;
+}
+
+.error {
+  min-height: 17px;
+  color: #b51f2b;
+  font-size: 12px;
+}
+
+.login-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 25px;
+  padding-top: 12px;
+  border-top: 1px solid #a9ada2;
+  color: #636b63;
+  font: 10px "Courier New", monospace;
+}
+
+.login-note {
+  position: absolute;
+  bottom: 15px;
+  color: #89928b;
+  font: 10px "Courier New", monospace;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+/* ОСНОВНОЙ АРХИВ */
+
+#site {
+  padding: 23px 0 110px;
+}
+
+.status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 9px;
+  padding: 10px 13px;
+  background: #252a28;
+  border: 1px solid var(--border);
+  color: #bfc8c0;
+  font: 10px "Courier New", monospace;
+}
+
+.red-text {
+  color: #ff6571 !important;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 36px 4px 30px;
+}
+
+.hero > div:first-child {
+  max-width: 730px;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 7vw, 67px);
+}
+
+.hero p:not(.eyebrow) {
+  color: #c0c9c2;
+  line-height: 1.8;
+}
+
+.stamp {
+  flex: none;
+  padding: 13px;
+  border: 2px solid var(--red);
+  color: #ff6571;
+  font: bold 17px/1.4 "Courier New", monospace;
+  text-align: center;
+  transform: rotate(7deg);
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  background: #242827;
+  border: 1px solid var(--border);
+}
+
+.nav {
+  padding: 12px 15px;
+  color: #c7cec8;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid #414a45;
+  border-bottom: 2px solid transparent;
+  font-size: 11px;
+}
+
+.nav:hover,
+.nav.active {
+  color: white;
+  background: #303d36;
+  border-bottom-color: var(--red-light);
+}
+
+.page {
+  min-height: 300px;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font: bold 29px "Courier New", monospace;
+}
+
+.section-heading .eyebrow {
+  margin-bottom: 6px;
+}
+
+/* КАРТОЧКИ */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  padding: 21px;
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-top: 3px solid #54765f;
+}
+
+.card h3 {
+  margin: 12px 0;
+  font: bold 20px "Courier New", monospace;
+}
+
+.card p:not(.eyebrow) {
+  color: #c3cbc4;
+  line-height: 1.8;
+}
+
+.text-button {
+  padding: 8px 0;
+  color: #91cba1;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.text-button:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.message {
+  margin-top: 20px;
+  padding: 16px;
+  background: #202925;
+  border: 1px solid #4c6855;
+  border-left: 4px solid #8cb99a;
+}
+
+.message b {
+  color: #9bd4a9;
+  font: bold 10px "Courier New", monospace;
+}
+
+.message p {
+  margin: 8px 0;
+}
+
+/* ДОКУМЕНТЫ И ВОССТАНОВЛЕНИЕ */
+
+.recovery-box {
+  max-width: 760px;
+  padding: 23px;
+  color: #252a26;
+  background: #d9d8ce;
+  border: 2px solid #f1f1e8;
+  box-shadow: 6px 6px 0 #080909;
+}
+
+.file-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  font: 11px "Courier New", monospace;
+}
+
+.progress {
+  height: 8px;
+  margin: 15px 0;
+  background: #b9beb4;
+}
+
+#progress-fill {
+  display: block;
+  width: 23%;
+  height: 100%;
+  background: var(--red);
+  transition: width .5s;
+}
+
+#file-text {
+  min-height: 100px;
+  padding: 14px;
+  background: #c9cec4;
+  border: 1px dashed #879287;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: 12px/1.8 "Courier New", monospace;
+}
+
+.recovery-box .message {
+  color: #e3e8e0;
+  background: #202925;
+}
+
+.recovery-box .message p {
+  color: inherit;
+}
+
+/* КАМЕРЫ */
+
+.camera-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.camera-card {
+  min-width: 0;
+  background: #101211;
+  border: 1px solid #535c56;
+}
+
+.camera-title {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 11px;
+  color: #d6ddd6;
+  border-bottom: 1px solid #454d48;
+  font: 11px "Courier New", monospace;
+}
+
+.camera-screen {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #050605;
+}
+
+.camera-screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #050605;
+}
+
+.no-signal {
+  color: var(--red-light);
+  font: bold 17px "Courier New", monospace;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.no-signal small {
+  display: block;
+  margin-top: 10px;
+  color: #a17b7e;
+  font: 10px Tahoma, sans-serif;
+}
+
+.camera-foot {
+  padding: 9px 11px;
+  color: #9da69e;
+  font: 10px "Courier New", monospace;
+}
+
+/* WIKI */
+
+.wiki-layout {
+  display: grid;
+  grid-template-columns: minmax(230px, .9fr) minmax(0, 1.5fr);
+  gap: 15px;
+}
+
+.wiki-sidebar,
+.wiki-article {
+  min-width: 0;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.wiki-sidebar label {
+  margin-top: 0;
+}
+
+.hint {
+  color: #aeb8af;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.history-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin: 22px 0 9px;
+  color: #a9d0b2;
+  font: 10px "Courier New", monospace;
+}
+
+.small-button {
+  padding: 5px 7px;
+  color: #dce4dd;
+  background: #303633;
+  border: 1px solid #58645b;
+  font-size: 9px;
+}
+
+.history-item,
+.result-item {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 9px;
+  color: #dbe1db;
+  background: #1b211e;
+  border: 1px solid #465149;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+.history-item:hover,
+.result-item:hover {
+  border-color: var(--red-light);
+}
+
+.result-item strong,
+.result-item small {
+  display: block;
+}
+
+.result-item small {
+  margin-top: 5px;
+  color: #aab5ac;
+  line-height: 1.5;
+}
+
+.wiki-article h3 {
+  font: bold 23px "Courier New", monospace;
+}
+
+.wiki-article p:not(.eyebrow) {
+  color: #cbd3cc;
+  line-height: 1.8;
+}
+
+.wiki-article h4 {
+  color: #a6d4b0;
+}
+
+/* ТЕРМИНАЛ */
+
+.terminal {
+  background: #0c100d;
+  border: 1px solid #56715d;
+}
+
+.terminal-title {
+  padding: 10px 13px;
+  color: #c3e1c8;
+  background: #283a2d;
+  font: 11px "Courier New", monospace;
+}
+
+#terminal-output {
+  min-height: 210px;
+  max-height: 350px;
+  overflow: auto;
+  padding: 15px;
+  color: #a9d9b2;
+  font: 12px/1.8 "Courier New", monospace;
+}
+
+#terminal-output p {
+  margin: 5px 0;
+  overflow-wrap: anywhere;
+}
+
+#terminal-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-top: 1px solid #344739;
+}
+
+#terminal-form span {
+  color: #a4d5ae;
+  white-space: nowrap;
+  font: 12px "Courier New", monospace;
+}
+
+#terminal-form input {
+  padding: 5px;
+  color: #c8e4ce;
+  background: transparent;
+  border: 0;
+  font: 12px "Courier New", monospace;
+}
+
+/* НИЖНЯЯ ПАНЕЛЬ */
+
+.media-player {
+  position: fixed;
+  z-index: 50;
+  right: 16px;
+  bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  max-width: calc(100vw - 24px);
+  padding: 9px 11px;
+  color: #252b27;
+  background: #d5d7cc;
+  border: 2px solid #f0f1e8;
+  box-shadow: 4px 4px 0 #080909;
+}
+
+.device-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 54px;
+  padding: 5px;
+  color: #303a32;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background .15s, border-color .15s, box-shadow .15s;
+}
+
+.device-button:hover,
+.device-button:focus-visible {
+  color: #7f1420;
+  background: #f0e3dc;
+  border-color: var(--red);
+  box-shadow: 0 0 10px #c6283666;
+}
+
+.device-button.active,
+.device-button.playing {
+  color: #a51f2b;
+  background: #f0d7d5;
+  border-color: var(--red);
+  box-shadow: 0 0 12px #c6283680;
+}
+
+.device-icon,
+.cassette {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 34px;
+  color: #303a32;
+  background: #aab3aa;
+  border: 2px solid #4d5b50;
+  box-shadow: inset 0 0 0 2px #d5d9ce;
+  font-size: 22px;
+}
+
+.cassette {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 49px;
+  height: 34px;
+  padding: 3px 4px;
+  background: #adb5aa;
+}
+
+.cassette-label {
+  width: 100%;
+  padding: 1px;
+  color: #303a32;
+  background: #e5e6dc;
+  font: bold 7px "Courier New", monospace;
+  text-align: center;
+}
+
+.cassette-holes {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.device-led {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #626a62;
+}
+
+.device-button:hover .device-led {
+  background: var(--red-light);
+  box-shadow: 0 0 6px var(--red-light);
+}
+
+.device-button.playing .device-led,
+.device-button.active .device-led {
+  background: #ed1028;
+  box-shadow: 0 0 9px #ed1028;
+}
+
+.device-button.playing .cassette,
+.device-button.playing .device-icon {
+  background: #e8b6b5;
+  border-color: var(--red);
+  box-shadow: 0 0 11px #e22d4380, inset 0 0 0 2px #f1d5d2;
+}
+
+.device-caption {
+  font: bold 8px "Courier New", monospace;
+  letter-spacing: .3px;
+}
+
+.disk-icon {
+  color: #34483a;
+}
+
+.alert-icon {
+  color: white;
+  background: #70252d;
+}
+
+.media-label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-left: 5px;
+  font-size: 10px;
+}
+
+.media-label b {
+  font-family: "Courier New", monospace;
+}
+
+.media-label span {
+  color: #59665b;
+}
+
+/* МОДАЛЬНОЕ ОКНО */
+
+.modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #000c;
+}
+
+.modal-window {
+  width: min(520px, 100%);
+  max-height: 85vh;
+  overflow: auto;
+  color: #dfe6df;
+  background: #202522;
+  border: 2px solid #6f9277;
+  box-shadow: 0 0 0 4px #303a33, 0 15px 50px #000;
+}
+
+.modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 11px;
+  color: white;
+  background: linear-gradient(90deg, #164f43, #357b65);
+  font: bold 11px "Courier New", monospace;
+}
+
+#modal-close {
+  width: 27px;
+  height: 25px;
+  color: white;
+  background: #7e202a;
+  border: 1px solid #e16a73;
+  font-size: 20px;
+  line-height: 1;
+}
+
+#modal-close:hover {
+  background: #d32d3c;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-content h3 {
+  color: #a6d8b0;
+  font: bold 22px "Courier New", monospace;
+}
+
+.modal-content p {
+  line-height: 1.7;
+}
+
+.modal-photo {
+  display: block;
+  width: min(260px, 100%);
+  max-height: 55vh;
+  margin: 15px auto;
+  object-fit: contain;
+  padding: 5px;
+  background: #d9d8ce;
+  border: 2px solid #78977d;
+  filter: grayscale(100%);
+}
+
+.modal-meta {
+  padding: 12px;
+  color: #b8d8be;
+  background: #151a16;
+  border-left: 3px solid var(--red);
+  white-space: pre-line;
+  font: 11px/1.9 "Courier New", monospace;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 15px 0;
+}
+
+.setting-row label {
+  flex: 1;
+  margin: 0;
+}
+
+.setting-row input {
+  width: 50%;
+  accent-color: var(--red);
+}
+
+.modal-action {
+  padding: 8px 12px;
+  color: white;
+  background: #28674f;
+  border: 1px solid #5b9775;
+}
+
+.modal-log {
+  margin: 8px 0;
+  padding: 10px;
+  background: #111612;
+  border-left: 2px solid var(--red);
+  color: #c8d9cb;
+  font: 11px/1.7 "Courier New", monospace;
+}
+
+/* ПОДВАЛ САЙТА */
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 22px 0;
+  border-top: 1px solid #4a554c;
+  color: #8e9a90;
+  font: 9px "Courier New", monospace;
+}
+
+/* МОБИЛЬНЫЙ ЭКРАН */
+
+@media (max-width: 700px) {
+  main {
+    width: 94%;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+
+  .stamp {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .menu .nav {
+    flex: 1 1 40%;
+  }
+
+  .cards,
+  .camera-grid,
+  .wiki-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .media-player {
+    left: 7px;
+    right: 7px;
+    bottom: 7px;
+    justify-content: space-around;
+    gap: 2px;
+    padding: 6px 4px;
+  }
+
+  .device-button {
+    min-width: 42px;
+    padding: 3px;
+  }
+
+  .device-icon {
+    width: 34px;
+    height: 29px;
+  }
+
+  .cassette {
+    width: 40px;
+    height: 29px;
+  }
+
+  .media-label {
+    display: none;
+  }
+
+  .device-caption {
+    font-size: 7px;
+  }
+
+  #site {
+    padding-bottom: 100px;
+  }
+
+  .login-content {
+    padding: 20px;
+  }
+
+  .login h1 {
+    font-size: 38px;
+  }
+
+  .login-note {
+    font-size: 8px;
+  }
+}
